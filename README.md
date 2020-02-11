@@ -9,7 +9,10 @@ bcornett@ubuntu:~/csci468/setup1$ grun LITTLE tokens -tokens
 [@5,29:29='\n',\<NEWLINE>,1:29]
 [@6,30:29='\<EOF>',<EOF>,2:0]
 
-Seems to be parsing tokens correctly. Found this grun option by running it with no options "Use startRuleName='tokens' if GrammarName is a lexer grammar.":
+Seems to be parsing tokens correctly. Found this grun option by running it with no options:
+
+"Use startRuleName='tokens' if GrammarName is a lexer grammar."
+
 bcornett@ubuntu:~/csci468/setup1$ grun
 java org.antlr.v4.gui.TestRig GrammarName startRuleName
   [-tokens] [-tree] [-gui] [-ps file.ps] [-encoding encodingname]
