@@ -10,48 +10,42 @@ import java.util.ArrayList;
 public class lexerMain{
 
   public static void main(String[] args)throws Exception{
+    //Checks Argument Input
+    try{
+    if (args.length !=1){
+	    System.out.println("Invalid Input Amount. Exiting");
+	    System.exit(1);
+    }
     System.out.print("Starting Lexer Script\n");
 
-    File file = new File("./inputs/fibonacci.micro");
-
-    BufferedReader br = new BufferedReader(new FileReader(file));
-
-    String program = "";
-    String st;
-    while ((st = br.readLine()) != null) {
-      program = program + st;
-      //System.out.println(st);
-    }
-    //System.out.println(program);
-
     List<String> tokenNames = getTokenNames();
-
-    //CodePointCharStream s = CharStreams.fromString(program, "name");
-    CharStream s = CharStreams.fromFileName("./inputs/fibonacci.micro");
-
+    CharStream s = CharStreams.fromFileName(args[0]);
     Lexer l = new LITTLE(s);   //LITTLE.java extends the Lexer class
     List<? extends Token> t = l.getAllTokens();
 
-    //System.out.println(l.getAllTokens());
-
-    //once we have the tokens, we can get the token name and type with the following:
+    //Once we have the tokens, we can get the token name and type with the following:
     /*System.out.println(t.get(0));
     System.out.println(t.get(0).getText());
     System.out.println(tokenNames.get(t.get(0).getType()));*/
-
+    String fileOut = args[0];
+    int position = fileOut.lastIndexOf(".");
+    if (position > 0){
+	fileOut = fileOut.substring(0,position);
+    }
     String outString = "";
     for(int i = 0; i<t.size();i++){
       outString += "Token Type: ";
-      outString += tokenNames.get(t.get(0).getType()) + "\n";
+      outString += tokenNames.get(t.get(i).getType()) + "\n";
       outString += "Value: ";
       outString += t.get(i).getText() + "\n";
     }
 
-    writeOutput("./ProgramOutput/fibonacci.out",outString);
 
-
-
+    writeOutput(fileOut+".out",outString);
+  }catch(Exception e){System.out.println("File Handle Exception. Exiting.");System.exit(1);}
   }
+
+
   public static List<String> getTokenNames()throws Exception{
     File file = new File("./LITTLE.tokens");
 
@@ -76,6 +70,12 @@ public class lexerMain{
         System.out.println("File created: " + out.getName());
       } else {
         System.out.println("File already exists.");
+
+	System.out.println("Removing old file.");
+	out.delete();
+	System.out.println("Creating new file.");
+	out.createNewFile();
+	System.out.println("File created: " + out.getName());
       }
       FileWriter write = new FileWriter(filename);
       write.write(stuff);

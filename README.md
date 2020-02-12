@@ -20,3 +20,10 @@ java org.antlr.v4.gui.TestRig GrammarName startRuleName
   [input-filename(s)]
 Use startRuleName='tokens' if GrammarName is a lexer grammar.
 Omitting input-filename makes rig read from stdin.
+
+
+bcornett@ubuntu:~/csci468/setup1$ for x in $(ls *out); do echo $x; diff -b $x outputs/$x; done
+fibonacci.out
+loop.out
+nested.out
+sqrt.out

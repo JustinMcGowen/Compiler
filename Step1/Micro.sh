@@ -8,6 +8,4 @@ export CLASSPATH=".:/usr/local/lib/antlr-4.8-complete.jar:$CLASSPATH"
 
 $antlr4 LITTLE.g4
 javac LITTLE*.java
-
-
-#TODO -- Add execution of driver file
+java lexerMain.java $1

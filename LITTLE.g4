@@ -9,9 +9,8 @@ OPERATOR: ':='|'+'|'-'|'*'|'/'|'='|'!='|'<'|'>'|'('|')'|';'|','|'<='|'>=';
 KEYWORD: 'PROGRAM'|'BEGIN'|'END'|'FUNCTION'|'READ'|'WRITE'|'IF'|'ELSE'|'ENDIF'|'WHILE'|'ENDWHILE'|'CONTINUE'|'BREAK'|'RETURN'|'INT'|'VOID'|'STRING'|'FLOAT';
 IDENTIFIER: [A-z]([A-z]|[0-9])*;
 INTLITERAL: [0-9]+;
-FLOATLIETERAL: [0-9]*'.'[0-9]+;
-STRINGLITERAL: '"'.+'"';
-COMMENT: '--'.*NEWLINE;
-NEWLINE : [\r\n]+ ;
+FLOATLITERAL: [0-9]*'.'[0-9]+;
+STRINGLITERAL: '"'.*?'"';
 
-WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
+COMMENT: '--'.*?[\r\n] -> skip; //skip comments
+WS : [ \t\r\n]+ -> skip; // skip spaces, tabs, newlines
