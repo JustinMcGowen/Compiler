@@ -84,3 +84,4 @@ fabric.properties
 /LITTLE.tokens
 /LITTLE.class
 /lexerMain.class
+/inputs/*.out
