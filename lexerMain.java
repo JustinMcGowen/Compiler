@@ -65,21 +65,22 @@ public class lexerMain{
   }
 
   public static void writeOutput(String filename, String stuff)throws Exception{
-    File out = new File(filename);
-    if (out.createNewFile()) {
-        System.out.println("File created: " + out.getName());
-      } else {
-        System.out.println("File already exists.");
-
-	System.out.println("Removing old file.");
-	out.delete();
-	System.out.println("Creating new file.");
-	out.createNewFile();
-	System.out.println("File created: " + out.getName());
-      }
-      FileWriter write = new FileWriter(filename);
-      write.write(stuff);
-      write.close();
+    System.out.println(stuff);
+//    File out = new File(filename);
+//    if (out.createNewFile()) {
+//        System.out.println("File created: " + out.getName());
+//      } else {
+//        System.out.println("File already exists.");
+//
+//	System.out.println("Removing old file.");
+//	out.delete();
+//	System.out.println("Creating new file.");
+//	out.createNewFile();
+//	System.out.println("File created: " + out.getName());
+//      }
+//      FileWriter write = new FileWriter(filename);
+//      write.write(stuff);
+//      write.close();
   }
 
 }
