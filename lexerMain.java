@@ -1,5 +1,4 @@
 import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.Lexer;
 import java.io.*;
 import java.util.List;
 
@@ -8,9 +7,9 @@ import java.util.List;
 
 public class lexerMain {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception{
         //Checks Argument Input
-        try {
+//        try {
             if (args.length != 1) {
                 System.out.println("Invalid Arguments. Exiting");
                 System.exit(1);
@@ -18,7 +17,13 @@ public class lexerMain {
             System.out.println("Building Lexer...");
 
             CharStream charStream = CharStreams.fromFileName(args[0]);
-            Lexer lexer = new LITTLE(charStream);   //LITTLE.java extends the Lexer class
+            Lexer lexer = new LITTLELexer(charStream);   //LITTLELexer.java extends the Lexer class
+
+            CommonTokenStream stream = new CommonTokenStream(lexer);
+            Parser parser = new LITTLEParser(stream);
+
+            System.out.println(parser.ruleNames);
+            parser.program();
 
             System.out.println("Scanning Program...\n");
             List<String> tokenNames = getTokenNames();
@@ -28,15 +33,16 @@ public class lexerMain {
             //writeMode 0 will print to console, writeMode 1 will print to output file
             writeOutput(1, outputString, args[0]);
 
-        } catch (Exception e) {
-            System.out.println("File Handle Exception. Exiting.");
-            System.exit(1);
-        }
+//        } catch (Exception e) {
+//            System.out.println(e);
+//            System.out.println("Error Encountered. Exiting Now.");
+//            System.exit(1);
+//        }
     }
 
 
     public static List<String> getTokenNames() throws Exception {
-        File file = new File("./LITTLE.tokens");
+        File file = new File("./LITTLELexer.tokens");
         BufferedReader br = new BufferedReader(new FileReader(file));
 
         List<String> tokens = new ArrayList<String>();
@@ -79,19 +85,19 @@ public class lexerMain {
             }
             fileOut = fileOut.concat(".out");
             File outputFile = new File(fileOut);
+
             if (!outputFile.createNewFile()) {
                 System.out.println("File already exists.");
                 System.out.println("Removing old file.");
                 outputFile.delete();
                 System.out.println("Creating new file.");
-            } else {
-                outputFile.createNewFile();
-                System.out.println("File created: " + outputFile.getName());
-                FileWriter writer = new FileWriter(fileOut);
-                writer.write(output);
-                writer.close();
             }
 
+            outputFile.createNewFile();
+            System.out.println("File created: " + outputFile.getName());
+            FileWriter writer = new FileWriter(fileOut);
+            writer.write(output);
+            writer.close();
         }
 
     }
