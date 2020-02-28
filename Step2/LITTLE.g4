@@ -11,7 +11,7 @@ pgm_body  : decl func_declarations;
 decl		  : string_decl decl | var_decl decl | empty;
 
 /** Global String Declaration */
-string_decl  : STRING id ':=' str ;
+string_decl  : STRING id ':=' str ';';
 str  : STRINGLITERAL;
 
 /** Variable Declaration */
