@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+
+rm -f *.class *.interp *.tokens LITTLELexer.java LITTLEBaseListener.java LITTLEListener.java LITTLEParser.java LITTLE.java ./inputs/*.out
