@@ -67,11 +67,12 @@ public class grammarMain {
             parser.setErrorHandler(handler);
 	    STListener listener = new STListener();
             new ParseTreeWalker().walk(listener, parser.program());
+	    listener.prettyPrint();
             //parser.program();
             //System.out.println(parser.getNumberOfSyntaxErrors());
-            if(parser.getNumberOfSyntaxErrors() == 0){
-              System.out.println("Accepted");
-            }
+            //if(parser.getNumberOfSyntaxErrors() == 0){
+            //  System.out.println("Accepted");
+            //}
             //System.out.println(parser.getTrimParseTree() );
             //Class<? extends Parser> pClass = null;
             //ClassLoader cl = Thread.currentThread().getContextClassLoader();

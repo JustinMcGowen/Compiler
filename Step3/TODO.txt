@@ -1,0 +1,5 @@
+I'm pretty bad at throwing exceptions I found out... I could use some help throwing Parse Exceptions within STListener.java.
+
+Also, I went under the assumption that only INTs and FLOATs can be passed as parameters to functions (because thats what all the test inputs have)
+
+Feel free to change anything you don't like. I think I did everything correctly but if you guys have any other ideas or thoughts feel free to get wild. 
