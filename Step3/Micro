@@ -6,6 +6,10 @@
 # grun='java org.antlr.v4.gui.TestRig'
 # export CLASSPATH=".:/usr/local/lib/antlr-4.8-complete.jar:$CLASSPATH"
 
-$antlr4 LITTLE.g4
+# $antlr4 LITTLE.g4
+java org.antlr.v4.Tool LITTLE.g4
 javac LITTLE*.java
-java grammarMain.java $1
+javac grammarMain.java
+javac STListener.java
+javac SymbolTableItem.java
+java grammarMain $1
