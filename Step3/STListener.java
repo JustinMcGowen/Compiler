@@ -8,7 +8,7 @@ public class STListener extends LITTLEBaseListener{
 	Stack<String> stack_scope = new Stack<String>();
 	
 	//integer to keep track of which "BLOCK" scope we're at
-	public int code_block = 0;
+	public int code_block = 1;
 
 	//Hashtable of symbol tables, K=scope name, V=Arraylist of SymbolTableItems
 	LinkedHashMap<String, ArrayList<SymbolTableItem>> symbolTableCollection = new LinkedHashMap<>();
@@ -135,32 +135,36 @@ public class STListener extends LITTLEBaseListener{
 	@Override public void enterMulop(LITTLEParser.MulopContext ctx) { }
 	@Override public void exitMulop(LITTLEParser.MulopContext ctx) { }
 	@Override public void enterIf_stmt(LITTLEParser.If_stmtContext ctx){ 
-		code_block++;
-		String scope = "BLOCK"+code_block;
+		String scope = "BLOCK "+code_block;
 		stack_scope.push(scope);
 		symbolTableCollection.put(scope, new ArrayList<SymbolTableItem>());
+		code_block++;
 	}
 	@Override public void exitIf_stmt(LITTLEParser.If_stmtContext ctx){
        		stack_scope.pop();
 	}
 	@Override public void enterElse_part(LITTLEParser.Else_partContext ctx){ 
-		code_block++;
-		String scope = "BLOCK"+code_block;
-		stack_scope.push(scope);
-		symbolTableCollection.put(scope, new ArrayList<SymbolTableItem>());
+		if(ctx.getChildCount() > 1){
+			String scope = "BLOCK "+code_block;
+			stack_scope.push(scope);
+			symbolTableCollection.put(scope, new ArrayList<SymbolTableItem>());
+			code_block++;
+		}else{}
 	}
 	@Override public void exitElse_part(LITTLEParser.Else_partContext ctx){ 
-		stack_scope.pop();
+		if (ctx.getChildCount() > 1) {
+			stack_scope.pop();
+		}
 	}
 	@Override public void enterCond(LITTLEParser.CondContext ctx) { }
 	@Override public void exitCond(LITTLEParser.CondContext ctx) { }
 	@Override public void enterCompop(LITTLEParser.CompopContext ctx) { }
 	@Override public void exitCompop(LITTLEParser.CompopContext ctx) { }
 	@Override public void enterWhile_stmt(LITTLEParser.While_stmtContext ctx){ 
-		code_block++;
-		String scope = "BLOCK"+code_block;
+		String scope = "BLOCK "+code_block;
 		stack_scope.push(scope);
 		symbolTableCollection.put(scope, new ArrayList<SymbolTableItem>());
+		code_block++;
 	}
 	@Override public void exitWhile_stmt(LITTLEParser.While_stmtContext ctx){
 		stack_scope.pop();
