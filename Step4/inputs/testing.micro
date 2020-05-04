@@ -1,0 +1,19 @@
+PROGRAM expr
+BEGIN
+
+	INT a,b,c;
+
+	FUNCTION VOID main()
+	BEGIN
+		STRING mul := "*";
+		STRING plus := "+";
+		STRING newline := "\n";
+
+		a := 3;
+		b := 2;
+		c := ((a) + (b));
+		c := a * b +b;
+		WRITE(a, mul, b, plus, c, newline);
+
+	END
+END

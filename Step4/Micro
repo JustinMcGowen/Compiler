@@ -10,6 +10,10 @@
 java org.antlr.v4.Tool LITTLE.g4
 javac LITTLE*.java
 javac grammarMain.java
+
 javac STListener.java
 javac SymbolTableItem.java
+
+javac ASTNode.java
+
 java grammarMain $1

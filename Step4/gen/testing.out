@@ -1,0 +1,19 @@
+var a
+var b
+var c
+str mul "*"
+str plus "+"
+str newline "\n"
+move 3 r4 
+move r4 a
+move 2 r4 
+move r4 b
+move r4 c
+move r4 c
+sys writei a
+sys writes mul
+sys writei b
+sys writes plus
+sys writei c
+sys writes newline
+
